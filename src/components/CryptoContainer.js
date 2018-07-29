@@ -7,24 +7,20 @@ import PropTypes from 'prop-types';
 
 class CryptoContainer extends Component {
     static propTypes = {
-        route: PropTypes.shape({
-            title: PropTypes.string.isRequired,
-        }),
-        navigator: PropTypes.object.isrequired,
+        title: PropTypes.string.isRequired,
+        navigator: PropTypes.object.isRequired,
     };
 
     constructor(props, context) {
         super(props, context);
-        this._onBackward = this._onBackward.bind(this);
+        this._onForward = this._onForward.bind(this);
     }
 
-    _onBackward() {
-        let nextIndex = ++this.props.index;
+    _onForward() {
         this.props.navigator.push({
-            component: CryptoContainer,
             title: 'Scene ' + nextIndex,
-            passProps: { index: nextIndex },
         });
+
     }
 
     componentDidMount() {
@@ -33,19 +29,20 @@ class CryptoContainer extends Component {
 
 
 
-    _renderItem({ coin }) {
-        coin.map(item => {
-            return <CoinCard
-            id={coin.id}
-            coin_name={coin.name}
-            price_usd={coin.price_usd}
-            percent_change_24h={coin.percent_change_24h}
-            percent_change_7d={coin.percent_change_7d}
-        // onPressItem={this._onPressItem}
-        />
-        
-        })
-    };
+    renderCoinCards() {
+        const { crypto } = this.props;
+        console.log(crypto)
+        return crypto.data.map((coin, index) =>
+            <CoinCard
+                key={index}
+                coin_name={coin.name}
+                price_usd={coin.price_usd}
+                percent_change_24h={coin.percent_change_24h}
+                percent_change_7d={coin.percent_change_7d}
+                _onForward={this._onForward}
+            />
+        )
+    }
 
 
 
@@ -73,6 +70,7 @@ class CryptoContainer extends Component {
                     paddingTop: 5,
                     paddingBottom: 5,
                     borderBottomWidth: 1,
+                    borderColor: "#ccc"
 
                 }}>
                     <Text style={firstcolumn}>Name</Text>
@@ -80,11 +78,7 @@ class CryptoContainer extends Component {
                     <Text style={lastcolumns}>24hr</Text>
                     <Text style={lastcolumns}>7d</Text>
                 </View>
-                <FlatList
-                    data={crypto}
-                    keyExtractor={item => item.id}
-                    renderItem={this._renderItem}
-                />
+                {this.renderCoinCards()}
             </ScrollView>
         )
     }

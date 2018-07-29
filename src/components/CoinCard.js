@@ -3,7 +3,7 @@ import {
     View,
     Text,
     StyleSheet,
-    ListItem
+    Button
 } from 'react-native';
 
 const CoinCard = ({ coin_name, price_usd, percent_change_24h, percent_change_7d }) => {
@@ -15,9 +15,9 @@ const CoinCard = ({ coin_name, price_usd, percent_change_24h, percent_change_7d 
     const operator24h = isPositive24h ? "+" : "";
     const operator7d = isPositive7d ? "+" : "";
     return (
-            <View>
+            <View style={row} onPress={this._onForward}>
                 <Text style={firstcolumn}>{coin_name}</Text>
-                <Text style={secondcolumn}>{Math.round(price_usd * 100000) / 100000}</Text>
+                <Text style={secondcolumn}>${Math.round(price_usd * 100000) / 100000}</Text>
                 <Text style={lastcolumns}><Text style={{ color: conditionalcolor24h }}>{operator24h}{percent_change_24h}%</Text></Text>
                 <Text style={lastcolumns}><Text style={{ color: conditionalcolor7d }}>{operator7d}{percent_change_7d}%</Text></Text>
             </View>
@@ -53,6 +53,7 @@ const styles = StyleSheet.create({
         paddingTop: 5,
         paddingBottom: 5,
         borderBottomWidth: 1,
+        borderColor: "#ccc"
     }
 })
 export default CoinCard;

@@ -9,14 +9,14 @@ export default class App extends React.Component {
   render() {
     return (
       <Provider store={Store}>
-      <NavigatorIOS
-        initialRoute={{
-          component: CryptoContainer,
-          title: 'Cryptocurrencies',
-          passProps: {index: 1},
-        }}
-        style = {styles.container}
-      />
+        <NavigatorIOS
+          initialRoute={{
+            component: CryptoContainer,
+            title: 'Cryptocurrencies',
+            passProps: { index: 1 },
+          }}
+          style={styles.container}
+        />
       </Provider>
     );
   }
@@ -25,7 +25,6 @@ export default class App extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
     width: window.width,
     // alignItems: 'center',
     // justifyContent: 'center',
