@@ -3,7 +3,7 @@ import {
     View,
     Text,
     StyleSheet,
-    Button
+    Button,
 } from 'react-native';
 
 export default class CoinCard extends React.Component {
@@ -28,7 +28,7 @@ export default class CoinCard extends React.Component {
         return (
             <View style={row}>
                 <Text style={firstcolumn}>{this.props.coin_name}</Text>
-                <Text style={secondcolumn}>{numberWithCommas(Math.round(this.props.price_usd * 100000) / 100000)}</Text>
+                <Text style={secondcolumn}>${numberWithCommas(Math.round(this.props.price_usd * 100000) / 100000)}</Text>
                 <Text style={lastcolumns}><Text style={{ color: conditionalcolor24h }}>{operator24h}{numberWithCommas(this.props.percent_change_24h)}%</Text></Text>
                 <Text style={lastcolumns}><Text style={{ color: conditionalcolor7d }}>{operator7d}{numberWithCommas(this.props.percent_change_7d)}%</Text></Text>
             </View>
@@ -53,18 +53,19 @@ const styles = StyleSheet.create({
     lastcolumns: {
         fontSize: 12,
         width: "17.5%",
-        alignSelf: 'flex-end'
+        display: "flex",
+        justifyContent: "center",
+        flexDirection: "column",
+        textAlign: "right",
     },
     row: {
         justifyContent: 'center',
         alignContent: 'center',
         display: "flex",
         flexDirection: "row",
-        marginLeft: 5,
-        marginRight: 5,
         paddingTop: 5,
         paddingBottom: 5,
         borderBottomWidth: 1,
-        borderColor: "#ccc"
+        borderColor: "#ccc",
     }
 })

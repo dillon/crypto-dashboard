@@ -78,10 +78,10 @@ class CryptoContainer extends Component {
         return (
             <ScrollView contentContainerStyle={contentContainer}>
                 <View style={{
-                    flex: 1,
+                    justifyContent: 'center',
+                    alignContent: 'center',
+                    display: "flex",
                     flexDirection: "row",
-                    marginLeft: 5,
-                    marginRight: 5,
                     paddingTop: 5,
                     paddingBottom: 5,
                     borderBottomWidth: 1,
@@ -103,7 +103,8 @@ const styles = {
     contentContainer: {
         paddingBottom: 100,
         paddingTop: 70,
-        marginLeft: 20,
+        marginLeft: "5%",
+        marginRight: "5%",
         display: "flex",
     },
     imageContainer: {
@@ -118,17 +119,15 @@ const styles = {
         height: 40,
     },
     firstcolumn: {
-        fontSize: 14,
         width: "40%",
     },
     secondcolumn: {
-        fontSize: 14,
-        width: "25%"
+        width: "25%",
     },
     lastcolumns: {
-        fontSize: 14,
         width: "17.5%",
-        alignSelf: 'flex-end'
+        textAlign: "right",
+        paddingRight: 7
     },
 
 }

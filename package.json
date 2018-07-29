@@ -6,7 +6,6 @@
     "jest-expo": "~27.0.0",
     "react-native-scripts": "1.14.0",
     "react-test-renderer": "16.3.1",
-    "redux-logger": "^3.0.6",
     "remote-redux-devtools": "^0.5.12"
   },
   "main": "./node_modules/react-native-scripts/build/bin/crna-entry.js",
@@ -28,6 +27,7 @@
     "react-native-loading-spinner-overlay": "^0.5.2",
     "react-redux": "^5.0.7",
     "redux": "^4.0.0",
+    "redux-logger": "^3.0.6",
     "redux-promise": "^0.6.0",
     "redux-thunk": "^2.3.0"
   }
