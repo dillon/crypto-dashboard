@@ -1,0 +1,28 @@
+{
+  "expo": {
+    "sdkVersion": "27.0.0",
+    "name": "crypto-dashboard",
+    "description": "This project is really great.",
+    "slug": "crypto-dashboard",
+    "privacy": "public",
+    "platforms": ["ios", "android"],
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true
+    }
+
+  }
+}

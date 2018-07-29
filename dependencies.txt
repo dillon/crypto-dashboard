@@ -1,0 +1,2 @@
+yarn add redux react-redux redux-thunk redux-promise axios react-native-loading-spinner-overlay
+yarn add --dev redux-logger
