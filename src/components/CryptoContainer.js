@@ -4,6 +4,7 @@ import { View, TouchableHighlight, FlatList, Button, ScrollView, StyleSheet, Tex
 import FetchCoinData from './../Actions/FetchCoinData';
 import CoinCard from './CoinCard';
 import PropTypes from 'prop-types';
+import CoinView from './CoinView';
 
 class CryptoContainer extends Component {
     static propTypes = {
@@ -13,14 +14,17 @@ class CryptoContainer extends Component {
 
     constructor(props, context) {
         super(props, context);
-        this._onForward = this._onForward.bind(this);
+        this._handleBackPress = this._handleBackPress.bind(this);
+        this._handleNextPress = this._handleNextPress.bind(this);
+
     }
 
-    _onForward() {
-        this.props.navigator.push({
-            title: 'Scene ' + nextIndex,
-        });
+    _handleBackPress() {
+        this.props.navigator.pop();
+    }
 
+    _handleNextPress(nextRoute, symbol) {
+        this.props.navigator.push(nextRoute);
     }
 
     componentDidMount() {
@@ -31,16 +35,27 @@ class CryptoContainer extends Component {
 
     renderCoinCards() {
         const { crypto } = this.props;
-        console.log(crypto)
-        return crypto.data.map((coin, index) =>
-            <CoinCard
-                key={index}
-                coin_name={coin.name}
-                price_usd={coin.price_usd}
-                percent_change_24h={coin.percent_change_24h}
-                percent_change_7d={coin.percent_change_7d}
-                _onForward={this._onForward}
-            />
+        return crypto.data.map((coin, index) => {
+            const nextRoute = {
+                component: CoinView,
+                title: coin.symbol,
+                passProps: { coin: coin }
+            };
+            return (
+                <TouchableHighlight underlayColor={'lightgrey'}
+                    activeOpacity={0.5} key={coin.rank} onPress={() => this._handleNextPress(nextRoute, coin.symbol)}>
+                    <CoinCard
+                        key={coin.rank}
+                        coin_name={coin.name}
+                        price_usd={coin.price_usd}
+                        percent_change_24h={coin.percent_change_24h}
+                        percent_change_7d={coin.percent_change_7d}
+                        _handleNextPress={this._handleNextPress}
+                    />
+                </TouchableHighlight>
+            )
+
+        }
         )
     }
 
@@ -120,7 +135,7 @@ const styles = {
 
 function mapStateToProps(state) {
     return {
-        crypto: state.crypto
+        crypto: state.crypto,
     }
 }
 

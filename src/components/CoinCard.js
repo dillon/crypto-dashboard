@@ -6,22 +6,34 @@ import {
     Button
 } from 'react-native';
 
-const CoinCard = ({ coin_name, price_usd, percent_change_24h, percent_change_7d }) => {
-    const { container, image, bold, row, lastcolumns, secondcolumn, firstcolumn, } = styles
-    const conditionalcolor24h = percent_change_24h >= 0 ? "green" : "red";
-    const isPositive7d = percent_change_7d >= 0;
-    const isPositive24h = percent_change_24h >= 0;
-    const conditionalcolor7d = isPositive7d ? "green" : "red";
-    const operator24h = isPositive24h ? "+" : "";
-    const operator7d = isPositive7d ? "+" : "";
-    return (
-            <View style={row} onPress={this._onForward}>
-                <Text style={firstcolumn}>{coin_name}</Text>
-                <Text style={secondcolumn}>${Math.round(price_usd * 100000) / 100000}</Text>
-                <Text style={lastcolumns}><Text style={{ color: conditionalcolor24h }}>{operator24h}{percent_change_24h}%</Text></Text>
-                <Text style={lastcolumns}><Text style={{ color: conditionalcolor7d }}>{operator7d}{percent_change_7d}%</Text></Text>
+export default class CoinCard extends React.Component {
+    render() {
+
+        const { container, image, bold, row, lastcolumns, secondcolumn, firstcolumn, } = styles
+        const conditionalcolor24h = this.props.percent_change_24h >= 0 ? "green" : "red";
+        const isPositive7d = this.props.percent_change_7d >= 0;
+        const isPositive24h = this.props.percent_change_24h >= 0;
+        const conditionalcolor7d = isPositive7d ? "green" : "red";
+        const operator24h = isPositive24h ? "+" : "";
+        const operator7d = isPositive7d ? "+" : "";
+        const numberWithCommas = (x) => {
+            if (x) {
+                return x.toString().replace(/\B(?=(?=\d*\.)(\d{3})+(?!\d))/g, ',');
+            }
+            else {
+                return "N/A"
+            }
+        }
+
+        return (
+            <View style={row}>
+                <Text style={firstcolumn}>{this.props.coin_name}</Text>
+                <Text style={secondcolumn}>{numberWithCommas(Math.round(this.props.price_usd * 100000) / 100000)}</Text>
+                <Text style={lastcolumns}><Text style={{ color: conditionalcolor24h }}>{operator24h}{numberWithCommas(this.props.percent_change_24h)}%</Text></Text>
+                <Text style={lastcolumns}><Text style={{ color: conditionalcolor7d }}>{operator7d}{numberWithCommas(this.props.percent_change_7d)}%</Text></Text>
             </View>
-    )
+        )
+    }
 }
 
 
@@ -56,4 +68,3 @@ const styles = StyleSheet.create({
         borderColor: "#ccc"
     }
 })
-export default CoinCard;

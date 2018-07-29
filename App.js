@@ -3,7 +3,7 @@ import { StyleSheet, Text, View, Button, NavigatorIOS, } from 'react-native';
 import PropTypes from 'prop-types';
 import { Provider } from 'react-redux';
 import Store from './src/Store';
-import { Header, CryptoContainer } from './src/components';
+import { Header, CryptoContainer, CoinView } from './src/components';
 
 export default class App extends React.Component {
   render() {
@@ -13,7 +13,7 @@ export default class App extends React.Component {
           initialRoute={{
             component: CryptoContainer,
             title: 'Cryptocurrencies',
-            passProps: { index: 1 },
+            passProps: { title: 'Cryptocurrencies', index: 1 },
           }}
           style={styles.container}
         />
