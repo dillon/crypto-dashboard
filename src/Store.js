@@ -7,11 +7,11 @@ import {
 import devTools from 'remote-redux-devtools';
 import promise from 'redux-promise';
 import thunk from 'redux-thunk';
-import logger from 'redux-logger';
+// import logger from 'redux-logger';
 
 import RootReducer from './Reducers';
 
-const middleware = applyMiddleware(thunk, promise, logger);
+const middleware = applyMiddleware(thunk, promise);
 
 const Store = createStore(
     RootReducer,
