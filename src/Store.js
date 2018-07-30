@@ -4,7 +4,7 @@ import {
     applyMiddleware,
     compose
 } from 'redux';
-import devTools from 'remote-redux-devtools';
+// import devTools from 'remote-redux-devtools';
 import promise from 'redux-promise';
 import thunk from 'redux-thunk';
 // import logger from 'redux-logger';
@@ -17,12 +17,6 @@ const Store = createStore(
     RootReducer,
     compose(
         middleware,
-        devTools({
-            name: Platform.OS,
-            hostname: 'localhost',
-            port: 5678,
-            realtime: true
-        }),
     )
 );
 
