@@ -9,7 +9,7 @@ import {
     Image,
     TouchableHighlight
 } from 'react-native';
-import FetchCoinNews from './../Actions/FetchCoinNews';
+import fetchCoinNews from './../actions/fetchCoinNews';
 import PropTypes from 'prop-types';
 import Article from './Article';
 
@@ -26,7 +26,7 @@ const numberWithCommas = (x) => {
 class CoinView extends Component {
 
     componentDidMount() {
-        this.props.FetchCoinNews(this.props.coin.symbol);
+        this.props.fetchCoinNews(this.props.coin.symbol);
     }
 
     renderNewsArticles() {
@@ -144,4 +144,4 @@ function mapStateToProps(state) {
     }
 }
 
-export default connect(mapStateToProps, { FetchCoinNews })(CoinView)
+export default connect(mapStateToProps, { fetchCoinNews })(CoinView)

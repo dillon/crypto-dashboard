@@ -3,12 +3,14 @@ import { StyleSheet, Text, View, Button, NavigatorIOS, } from 'react-native';
 import PropTypes from 'prop-types';
 import { Provider } from 'react-redux';
 import Store from './src/Store';
-import { Header, CryptoContainer, CoinView } from './src/components';
+import { CryptoContainer } from './src/components';
+import ErrorBoundary from './src/components/ErrorBoundary';
 
 export default class App extends React.Component {
   render() {
     return (
       <Provider store={Store}>
+      <ErrorBoundary>
         <NavigatorIOS
           initialRoute={{
             component: CryptoContainer,
@@ -17,6 +19,7 @@ export default class App extends React.Component {
           }}
           style={styles.container}
         />
+        </ErrorBoundary>
       </Provider>
     );
   }

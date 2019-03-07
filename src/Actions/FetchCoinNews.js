@@ -5,9 +5,9 @@ import {
     FETCHING_COIN_NEWS_FAIL
 } from './../Utils/ActionTypes';
 
-export default function FetchCoinNews(searchTerm) {
+export default function fetchCoinNews(searchTerm) {
     return dispatch => {
-
+        if (!searchTerm) throw new Error('no search term')
         dispatch({ type: FETCHING_COIN_NEWS })
 
 
